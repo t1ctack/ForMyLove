@@ -1,0 +1,55 @@
+﻿@page "/game"
+
+<h2 style="text-align:center; color:rebeccapurple ;">🎮 Joguinho do Amor ❤️</h2>
+
+<p style="text-align:center;">Clique nos corações para ganhar pontos! Quero print com mais de 1000 pontos em Gabrielle!!</p>
+
+<div style="position: relative; width:100%; height:400px; border:2px solid purple; border-radius:10px; overflow:hidden;">
+    @foreach (var heart in hearts)
+    {
+        <span style="position:absolute; font-size:30px; cursor:pointer; top:@heart.Top%; left:@heart.Left%;"
+              @onclick="@(() => ClickHeart(heart))">
+            ❤️
+        </span>
+    }
+</div>
+
+<p style="text-align:center; font-size:20px; margin-top:20px;">Pontuação: <b>@score</b></p>
+
+@code {
+    private class Heart
+    {
+        public int Top { get; set; }
+        public int Left { get; set; }
+    }
+
+    private List<Heart> hearts = new();
+    private Random rand = new();
+    private int score = 0;
+
+    protected override void OnInitialized()
+    {
+        GenerateHearts();
+    }
+
+    private void GenerateHearts()
+    {
+        hearts.Clear();
+        for (int i = 0; i < 5; i++)
+        {
+            hearts.Add(new Heart { Top = rand.Next(0, 90), Left = rand.Next(0, 90) });
+        }
+        StateHasChanged();
+    }
+
+    private void ClickHeart(Heart heart)
+    {
+        score++;
+        hearts.Remove(heart);
+
+        if (hearts.Count == 0)
+        {
+            GenerateHearts();
+        }
+    }
+}

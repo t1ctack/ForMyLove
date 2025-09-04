@@ -1,0 +1,36 @@
+﻿@page "/"
+
+<h1 style="text-align:center; color:mediumpurple;">Oiiiiii, minha princesa maravilhosa, meu amor 💖</h1>
+
+<p style="text-align:center; font-size:18px;">
+    Clique aqui abaixo para ver sua surpresa especial ✨
+</p>
+
+<div style="text-align:center; margin-top:20px;">
+    <button @onclick="MostrarSurpresa" style="padding:10px 20px; font-size:18px; background-color:rebeccapurple; color:white; border:none; border-radius:10px; cursor:pointer;">
+        Abrir Surpresa 🎁
+    </button>
+</div>
+
+@if (mostrar)
+{
+    <div style="margin-top:30px; text-align:center; font-size:22px; color:deeppink; font-weight:bold; animation: pulse 1.5s infinite;">
+        Você é a minha mulher, minha querida, meu amor e minha paz. Eu amo estar com vc e fazer tudo com vc, estar contigo é muito importante para mim. Tenho orgulho de quem vc vem se tornando, vc claramente é um presente do nosso Cristo para mim, eu te agradeço por tudo. Bejo 💖
+    </div>
+
+    <div style="text-align:center; margin-top:20px;">
+        @for (int i = 0; i < 10; i++)
+        {
+            <span style="font-size:30px; color:red; animation: flutuar 5s infinite; margin:5px;">❤️</span>
+        }
+    </div>
+}
+
+@code {
+    bool mostrar = false;
+
+    void MostrarSurpresa()
+    {
+        mostrar = true;
+    }
+}
